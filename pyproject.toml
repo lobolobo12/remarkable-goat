@@ -1,0 +1,49 @@
+[project]
+name = "remarkable-study"
+version = "0.1.0"
+description = "Slovenian study packs grounded in reMarkable test folders"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32,<3",
+    "openai>=2,<3",
+    "pydantic>=2.9,<3",
+    "pypdf>=6,<7",
+    "reportlab>=4,<5",
+    "icalendar>=6,<7",
+    "google-api-python-client>=2,<3",
+    "google-auth-oauthlib>=1,<2",
+    "playwright>=1.50,<2",
+    "pymupdf>=1.26,<2",
+    "pillow>=11,<13",
+]
+
+[project.optional-dependencies]
+cloud = [
+  "remarkapy @ git+https://github.com/j6k4m8/remarkapy.git@b54fe8e34a363f482f50b621d78f7fb1da84f64a",
+  "remarks @ git+https://github.com/avncharlie/remarks.git@396e32a6a12a494f9ce7cb295a5786e26c9b876f",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.12"]
+
+[project.scripts]
+study = "study.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["study"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+# Job/CLI boundaries must contain failures from multiple third-party libraries.
+"study/runner.py" = ["BLE001"]
+"study/cli.py" = ["BLE001"]
+"study/desktop.py" = ["BLE001"]
