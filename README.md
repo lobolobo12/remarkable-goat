@@ -2,6 +2,8 @@
 
 Slovenian study notes, practice tests, separate solutions and a seven-day study plan made from your own reMarkable Paper Pro folders.
 
+Licensed under the [MIT License](LICENSE).
+
 ## Connection status
 
 - reMarkable: paired; notebook download and handwritten PDF rendering are verified for Biologija and all five Geografija notebooks.
